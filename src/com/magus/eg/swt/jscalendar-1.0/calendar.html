@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <!-- calendar stylesheet -->
+ <link rel="stylesheet" type="text/css" media="all" href="calendar-blue2.css" title="win2k-cold-1" />
+
+ <!-- main calendar program -->
+ <script type="text/javascript" src="calendar.js"></script>
+
+ <!-- language for the calendar -->
+ <script type="text/javascript" src="lang/calendar-en.js"></script>
+
+ <!-- the following script defines the Calendar.setup helper function, which makes
+      adding a calendar a matter of 1 or 2 lines of code. -->
+ <script type="text/javascript" src="calendar-setup.js"></script>
+</head>
+<body style="margin:0px; padding:0px;">
+<div style="float: left;" id="calendar-container"></div>
+<script type="text/javascript">
+  function dateChanged(calendar) {
+    // Beware that this function is called even if the end-user only
+    // changed the month/year.  In order to determine if a date was
+    // clicked you can use the dateClicked property of the calendar:
+    if (calendar.dateClicked) {
+      // OK, a date was clicked, redirect to /yyyy/mm/dd/index.php
+      var y = calendar.date.getFullYear();
+      var m = calendar.date.getMonth();     // integer, 0..11
+      var d = calendar.date.getDate();      // integer, 1..31
+      // redirect...
+      //window.location = "/" + y + "/" + m + "/" + d + "/index.php";
+      window.status=calendar.date.getTime();
+      //window.close();
+    }
+  };
+
+  Calendar.setup(
+    {
+      flat         : "calendar-container", // ID of the parent element
+      flatCallback : dateChanged           // our callback function
+    }
+  );
+</script>
+</body>
+</html>
